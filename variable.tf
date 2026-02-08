@@ -24,7 +24,10 @@ variable "vpc_cidr_block" {
       error_message = "must be valid cidr"
     }
 }
-
+variable "public_ip_on_launch" {
+  type = bool
+  description = "Turn on ipv4 to public"
+}
 variable "vpc_name" {
   type= string 
   description = "Name of the VPC"

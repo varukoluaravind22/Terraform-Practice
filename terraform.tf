@@ -26,7 +26,7 @@ resource "aws_vpc" "LMS" {
 resource "aws_subnet" "LMS-PUBLIC-SUBNET-1" {
   vpc_id     = aws_vpc.LMS.id
   cidr_block = var.vpc_pub_subnet_cidr_block-1
-
+  map_public_ip_on_launch = var.public_ip_on_launch
   tags = {
     Name = var.vpc_pub_sub_name-1
   }
@@ -35,7 +35,7 @@ resource "aws_subnet" "LMS-PUBLIC-SUBNET-1" {
 resource "aws_subnet" "LMS-PUBLIC-SUBNET-2" {
   vpc_id     = aws_vpc.LMS.id
   cidr_block = var.vpc_pub_subnet_cidr_block-2
-
+  map_public_ip_on_launch = var.public_ip_on_launch
   tags = {
     Name = var.vpc_pub_sub_name-2
   }
