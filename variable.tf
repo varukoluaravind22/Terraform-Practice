@@ -35,7 +35,7 @@ variable "vpc_pub_subnet_cidr_block-1" {
   description = "This is Public subnet of LMS"
 
   validation {
-    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-1,1))
+    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-1,0)) && endswith(var.vpc_pub_subnet_cidr_block-1, "/24")
     error_message = "Must be valid cidr"
   }
 }
@@ -49,7 +49,7 @@ variable "vpc_pub_subnet_cidr_block-2" {
   description = "LMS public subnet 2"
 
   validation {
-    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-2,2))
+    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-2,0))&& endswith(vpc_pub_subnet_cidr_block-2, "/24")
     error_message = "Must be valid cidr"
   }
 }
@@ -62,7 +62,7 @@ variable "vpc_pvt_subnet_cidr_block" {
   description = "LMS Private subnet"
 
   validation {
-    condition = can(cidrhost(var.vpc_pvt_subnet_cidr_block,3))
+    condition = can(cidrhost(var.vpc_pvt_subnet_cidr_block,0))&& endswith(var.vpc_pvt_subnet_cidr_block, "/24")
     error_message = "Must be valid cidr"
   }
 }
