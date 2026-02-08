@@ -35,7 +35,7 @@ variable "vpc_pub_subnet_cidr_block-1" {
   description = "This is Public subnet of LMS"
 
   validation {
-    condition = can(cidrhost(var.vpc_subnet_cidr_block,1))
+    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-1,1))
     error_message = "Must be valid cidr"
   }
 }
