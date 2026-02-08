@@ -12,6 +12,6 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-resource "aws_resourcesgroups_group" "Ag"{
+resource "aws_resourcegroups_group" "Ag"{
     name = "${var.Agname}"
 }
