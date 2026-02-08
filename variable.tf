@@ -73,3 +73,7 @@ variable "vpc_pvt_sub_name" {
   type = string
   description = "name of LMS pvt subnet"
 }
+variable "internet_gateway_name" {
+  type = string
+  description = "Name of internet gateway"
+}

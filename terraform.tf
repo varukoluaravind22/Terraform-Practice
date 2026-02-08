@@ -48,3 +48,26 @@ resource "aws_subnet" "LMS-PRIVATE-SUBNET" {
     Name = var.vpc_pvt_sub_name
   }
 }
+
+resource "aws_internet_gateway" "Gateway" {
+  vpc_id = aws_vpc.LMS.id
+
+  tags = {
+    Name = var.internet_gateway_name
+  }
+}
+resource "aws_internet_gateway_attachment" "Gateway_attachment" {
+  internet_gateway_id = aws_internet_gateway.Gateway.id
+  vpc_id              = aws_vpc.LMS.id
+}
+resource "aws_route_table" "LMS_ROUTE_TABLE" {
+  vpc_id = aws_vpc.LMS.id
+
+route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.Gateway.id
+  }
+  tags = {
+    Name = "${var.vpc_name}-Route_table"
+  }
+}
