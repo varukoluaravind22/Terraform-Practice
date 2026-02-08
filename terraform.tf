@@ -12,15 +12,14 @@ provider "aws" {
   region = var.awsregion
   access_key = var.awsaccess-key
   secret_key = var.awssecret-key
-
 }
 
 
 resource "aws_vpc" "LMS" {
-  cidr_block       = var.vpc-cidr-block
+  cidr_block       = var.vpc_cidr_block
   instance_tenancy = "default"
 
   tags = {
-    Name = var.vpc-name
+    Name = var.vpc_name
   }
 }

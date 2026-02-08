@@ -15,17 +15,17 @@ variable "awssecret-key" {
   description = "Enter secret key value"
 }
 
-variable "vpc-cidr-block" {
+variable "vpc_cidr_block" {
     type= string 
     description = "This is main vpc cidr block"
 
     validation {
-      condition = can(cidrhost(var.vpc-cidr-block,0))
+      condition = can(cidrhost(var.vpc_cidr_block,0))
       error_message = "must be valid cidr"
     }
 }
 
-variable "vpc-name" {
+variable "vpc_name" {
   type= string 
   description = "Name of the VPC"
 }

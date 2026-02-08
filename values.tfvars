@@ -1,3 +1,3 @@
 awsregion="ap-south-1"
-vpc-cidr-block="10.0.0.0/16"
-vpc-name="LMS-DEVOPS"
+vpc_cidr_block="10.0.0.0/16"
+vpc_name="LMS-DEVOPS"
