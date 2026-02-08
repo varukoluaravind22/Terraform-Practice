@@ -9,9 +9,15 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "${var.awsregion}"
+  region = var.awsregion
 }
 
-resource "aws_resourcegroups_group" "Ag"{
-    name = "${var.Agname}"
+
+resource "aws_vpc" "LMS" {
+  cidr_block       = var.vpc-cidr-block
+  instance_tenancy = "default"
+
+  tags = {
+    Name = var.vpc-name
+  }
 }
