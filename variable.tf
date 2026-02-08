@@ -30,3 +30,43 @@ variable "vpc_name" {
   description = "Name of the VPC"
 }
 
+variable "vpc_pub_subnet_cidr_block-1" {
+  type = string 
+  description = "This is Public subnet of LMS"
+
+  validation {
+    condition = can(cidrhost(var.vpc_subnet_cidr_block,1))
+    error_message = "Must be valid cidr"
+  }
+}
+variable "vpc_pub_sub_name-1" {
+  type = string
+  description = "Name of the public lms subnet"
+}
+
+variable "vpc_pub_subnet_cidr_block-2" {
+  type = string
+  description = "LMS public subnet 2"
+
+  validation {
+    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-2,2))
+    error_message = "Must be valid cidr"
+  }
+}
+variable "vpc_pub_sub_name-2" {
+  type=string
+  description = "LMS public subnet 2"
+}
+variable "vpc_pvt_subnet_cidr_block" {
+  type = string
+  description = "LMS Private subnet"
+
+  validation {
+    condition = can(cidrhost(var.vpc_pvt_subnet_cidr_block,3))
+    error_message = "Must be valid cidr"
+  }
+}
+variable "vpc_pvt_sub_name" {
+  type = string
+  description = "name of LMS pvt subnet"
+}
