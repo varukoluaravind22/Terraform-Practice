@@ -68,6 +68,6 @@ route {
     gateway_id = aws_internet_gateway.Gateway.id
   }
   tags = {
-    Name = "${var.vpc_name}-Route_table"
+    Name = "${var.vpc_name}-ROUTE_TABLE"
   }
 }
