@@ -24,7 +24,7 @@ resource "aws_vpc" "LMS" {
 }
 
 resource "aws_subnet" "LMS-PUBLIC-SUBNET-1" {
-  vpc_id     = aws_vpc.var.vpc_name.id
+  vpc_id     = aws_vpc.LMS.id
   cidr_block = var.vpc_pub_subnet_cidr_block-1
 
   tags = {
@@ -33,7 +33,7 @@ resource "aws_subnet" "LMS-PUBLIC-SUBNET-1" {
 }
 
 resource "aws_subnet" "LMS-PUBLIC-SUBNET-2" {
-  vpc_id     = aws_vpc.var.vpc_name.id
+  vpc_id     = aws_vpc.LMS.id
   cidr_block = var.vpc_pub_subnet_cidr_block-2
 
   tags = {
@@ -41,7 +41,7 @@ resource "aws_subnet" "LMS-PUBLIC-SUBNET-2" {
   }
 }
 resource "aws_subnet" "LMS-PRIVATE-SUBNET" {
-  vpc_id     = aws_vpc.var.vpc_name.id
+  vpc_id     = aws_vpc.LMS.id
   cidr_block = var.vpc_pvt_subnet_cidr_block
 
   tags = {
