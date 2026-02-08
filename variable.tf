@@ -5,6 +5,16 @@ variable "awsregion" {
   default = "ap-south-1"
 }
 
+variable "awsaccess-key" {
+  type = string
+  description = "Enter access key value"
+}
+
+variable "awssecret-key" {
+  type = string
+  description = "Enter secret key value"
+}
+
 variable "vpc-cidr-block" {
     type= string 
     description = "This is main vpc cidr block"
@@ -14,7 +24,9 @@ variable "vpc-cidr-block" {
       error_message = "must be valid cidr"
     }
 }
+
 variable "vpc-name" {
   type= string 
   description = "Name of the VPC"
 }
+
