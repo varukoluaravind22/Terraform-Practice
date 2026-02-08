@@ -49,7 +49,7 @@ variable "vpc_pub_subnet_cidr_block-2" {
   description = "LMS public subnet 2"
 
   validation {
-    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-2,0))&& endswith(vpc_pub_subnet_cidr_block-2, "/24")
+    condition = can(cidrhost(var.vpc_pub_subnet_cidr_block-2,0))&& endswith(var.vpc_pub_subnet_cidr_block-2, "/24")
     error_message = "Must be valid cidr"
   }
 }
