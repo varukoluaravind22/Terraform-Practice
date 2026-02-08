@@ -9,10 +9,9 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
 }
 
-resource "Aws_resource-group" "Ag"{
+resource "aws_resourcesgroups_group" "Ag"{
     name = "${var.Agname}"
-    location= "${var.Aglocation}"
 }
