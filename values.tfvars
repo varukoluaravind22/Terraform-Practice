@@ -1,0 +1,16 @@
+aws_region = "ap-south-1"
+vpc_cidr = "10.0.0.0/16"
+vpc_name = "Entire_Architecture"
+public_vpc_cidr_1 = "10.0.1.0/24"
+public_vpc_cidr_2 = "10.0.2.0/24"
+public_availability_zone_1 = "ap-south-1a"
+public_availability_zone_2 = "ap-south-1b"
+private_availability_zone_1 = "ap-south-1a"
+private_availability_zone_2 = "ap-south-1b"
+map_on_public_ip = true
+private_vpc_cidr_1 = "10.0.3.0/24"
+private_vpc_cidr_2 = "10.0.4.0/24"
+internet_gateway_ip = "0.0.0.0/0"
+instance_type = "t2.medium"
+ingress_pub_ports = [22,80,443,8080,3100]
+ingress_pvt_ports = [22,3100]
