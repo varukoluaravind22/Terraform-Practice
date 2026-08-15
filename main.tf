@@ -178,7 +178,7 @@ resource "aws_eks_cluster" "Entire_arch_eks_cluster"{
     authentication_mode = "API"
   }
   role_arn = aws_iam_role.Entire_arch_cluster_role.arn
-  version = "1.35"
+  version = "1.36"
   vpc_config {
   subnet_ids = [aws_subnet.Entire_pvt_subnet-1.id, aws_subnet.Entire_pvt_subnet-2.id]
   #The EKS API server can be reached from inside your VPC/private network.
