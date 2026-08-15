@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "terraform-lock" {
-  name = "terraform-lock"
+  name = "use_lockfile"
   billing_mode = "PAY_PER_REQUEST"
   hash_key = "LockID"
   attribute {
@@ -13,7 +13,7 @@ terraform {
       key = "Entire_arch/terraform.tfstate"
       region = "ap-south-1"
       encrypt = true
-      dynamodb_table = "terraform-lock"
+      dynamodb_table = "use_lockfile"
     }
 }
 

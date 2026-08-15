@@ -220,7 +220,7 @@ resource "aws_iam_role_policy_attachment" "Entire-arch_eks_cluster_policy"{
 }
 
 
-resources "aws_eks_node_group" "Entire_arch_eks_cluster_node_group"{
+resource "aws_eks_node_group" "Entire_arch_eks_cluster_node_group"{
   cluster_name = aws_eks_cluster.Entire_arch_eks_cluster.name
   node_group_name = "${var.vpc_name}_eks_node_group"
   node_role_arn = aws_iam_role.Entire_arch_node_role.arn
@@ -290,7 +290,7 @@ data "aws_ami" "ubuntu" {
 }
 
 #instance creation
-  `
+
 resource "aws_instance" "ubuntu2"{
   ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
