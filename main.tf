@@ -318,7 +318,7 @@ resource "aws_security_group" "Entire_pvt_arch_security_group"{
   dynamic "ingress"{
   for_each = var.ingress_pvt_ports
   content{
-     from_port = ingress.value                                                           q
+     from_port = ingress.value
      to_port = ingress.value
      protocol = "tcp"
      cidr_blocks = ["${aws_instance.ubuntu1.private_ip}/32"]
