@@ -263,10 +263,10 @@ resource "aws_iam_role" "Entire_arch_node_role"{
 
 resource "aws_iam_role_policy_attachment" "Entire-arch_eks_node_policy"{
   for_each={
-    policy1 = "aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-    policy2 = "aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-    policy3 = "aws:iam:aws:policy/AmazonEKSWorkerNodePolicy"
-    policy4 = "aws:iam::aws:policy/AmazonElasticContainerRegistryPublicReadOnly"
+    policy1 = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+    policy2 = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+    policy3 = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+    policy4 = "arn:aws:iam::aws:policy/AmazonElasticContainerRegistryPublicReadOnly"
   }
   policy_arn = each.value
   role =aws_iam_role.Entire_arch_node_role.name
