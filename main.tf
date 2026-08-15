@@ -237,7 +237,7 @@ resource "aws_eks_node_group" "Entire_arch_eks_cluster_node_group"{
     max_unavailable = 1 
   }
   depends_on = [
-    aws_iam_policy_attachment.Entire-arch_eks_node_policy.arn
+    aws_iam_role_policy_attachment.Entire-arch_eks_node_policy
   ]
 }
 #node  group  role creation for the eks cluster
