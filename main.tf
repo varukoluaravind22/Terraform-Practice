@@ -177,7 +177,11 @@ resource "aws_eks_cluster" "Entire_arch_eks_cluster"{
   access_config {
     authentication_mode = "API"
   }
-#The EKS API server can be reached from inside your VPC/private network.
+  role_arn = aws_iam_role.Entire_arch_cluster_role.arn
+  version = "1.35"
+  vpc_config {
+  subnet_ids = [aws_subnet.Entire_pvt_subnet-1.id, aws_subnet.Entire_pvt_subnet-2.id]
+  #The EKS API server can be reached from inside your VPC/private network.
 #Example: if the above is true then we can use the command in bastion and from there ssh to pvt ec2 and use the command to configure eks aws eks update-kubeconfig --region ap-south-1 --name my-cluster
 
   endpoint_private_access= true
@@ -186,10 +190,6 @@ resource "aws_eks_cluster" "Entire_arch_eks_cluster"{
 #Example: if the above is true then we can use the command in laptop and be used over internet aws eks update-kubeconfig --region ap-south-1 --name my-cluster
 
   endpoint_public_access = false
-  role_arn = aws_iam_role.Entire_arch_cluster_role.arn
-  version = "1.35"
-  vpc_config {
-  subnet_ids = [aws_subnet.Entire_pvt_subnet-1.id, aws_subnet.Entire_pvt_subnet-2.id]
   }
   depends_on = [aws_iam_role_policy_attachment.Entire-arch_eks_cluster_policy]
 }
@@ -305,7 +305,7 @@ resource "aws_instance" "ubuntu1" {
   ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   subnet_id = aws_subnet.Entire_pub_subnet-1.id
-  security_groups = [aws_security_group.Entire_arch_security_group.id]
+  security_groups = [aws_security_group.Entire_pub_arch_security_group.id]
   tags ={
     Name = "${var.vpc_name}_Bastion_pub_instance"
   }
