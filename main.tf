@@ -245,16 +245,17 @@ resource "aws_iam_role" "Entire_arch_node_role"{
   name = "Entire_arch_node_role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
+
     Statement = [
-     {
-      Effect ="allow"
-      Action =" sts:AssumeRole"
-      Principal = {
-        Service = [
-          "eks-nodegroup.amazonaws.com"
-        ]
+      {
+        Effect = "Allow"
+
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+
+        Action = "sts:AssumeRole"
       }
-     }
     ]
   })
 }
