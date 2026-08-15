@@ -30,15 +30,6 @@ resource "aws_subnet" "Entire_pub_subnet-1" {
     Name = "${var.vpc_name}_pub_subnet_1"
   }
 }
-resource "aws_subnet" "Entire_pub_subnet-2" {
-  vpc_id = aws_vpc.Entire_arch.id
-  cidr_block = var.public_vpc_cidr_2
-  availability_zone = var.public_availability_zone_2
-  map_public_ip_on_launch= var.map_on_public_ip
-  tags = {
-    Name = "${var.vpc_name}_pub_subnet_2"
-  }
-}
 
 #below is the private subnet creation for the vpc
 resource "aws_subnet" "Entire_pvt_subnet-1" {
@@ -64,6 +55,16 @@ resource "aws_internet_gateway" "Entire_arch_internet_gateway" {
     Name = "${var.vpc_name}_internet_gateway"
   }
 }
+resource "aws_eip" "Entire_arch_nat_gateway_eip"{
+  domain="vpc"
+}
+resource "aws_nat_gateway" "Entire_arch_nat_gateway"{
+  allocation_id= aws_eip.Entire_arch_nat_gateway_eip.id
+  subnet_id= aws_subnet.Entire_pub_subnet-1.id
+  tags = {
+    Name = "${var.vpc_name}_nat_gateway"
+  }
+}
 #public route table creation
 resource "aws_route_table" "Entire_arch_public_route_table" {
   vpc_id = aws_vpc.Entire_arch.id
@@ -80,7 +81,10 @@ resource "aws_route_table" "Entire_arch_public_route_table" {
 
 resource "aws_route_table" "Entire_arch_private_route_table" {
   vpc_id = aws_vpc.Entire_arch.id
-  route =[]
+  route {
+    gateway_id= aws_nat_gateway.Entire_arch_nat_gateway.id
+    cidr_block = var.internet_gateway_ip
+  }
   tags ={
     Name = "${var.vpc_name}_private_route_table"
   }
@@ -101,7 +105,6 @@ resource "aws_route_table_association" "Entire_arch_pub_rt_association" {
 resource "aws_route_table_association" "Entire_arch_pub_rt_association" {
   for_each = {
     pub1 = aws_subnet.Entire_pub_subnet-1.id
-    pub2 = aws_subnet.Entire_pub_subnet-2.id
   }
   subnet_id = each.value
   route_table_id = aws_route_table.Entire_arch_public_route_table.id
@@ -160,7 +163,6 @@ resource "aws_network_acl_association" "Entire_arch_nacl_association" {
 resource "aws_network_acl_association" "Entire_arch_nacl_association" {
   for_each = {
     pub1 = aws_subnet.Entire_pub_subnet-1.id
-    pub2 = aws_subnet.Entire_pub_subnet-2.id
     pvt1 = aws_subnet.Entire_pvt_subnet-1.id
     pvt2 = aws_subnet.Entire_pvt_subnet-2.id
   }
@@ -175,6 +177,15 @@ resource "aws_eks_cluster" "Entire_arch_eks_cluster"{
   access_config {
     authentication_mode = "API"
   }
+#The EKS API server can be reached from inside your VPC/private network.
+#Example: if the above is true then we can use the command in bastion and from there ssh to pvt ec2 and use the command to configure eks aws eks update-kubeconfig --region ap-south-1 --name my-cluster
+
+  endpoint_private_access= true
+#The EKS API server can also be reached through a public AWS endpoint
+#from the Internet, subject to endpoint access restrictions.
+#Example: if the above is true then we can use the command in laptop and be used over internet aws eks update-kubeconfig --region ap-south-1 --name my-cluster
+
+  endpoint_public_access = false
   role_arn = aws_iam_role.Entire_arch_cluster_role.arn
   version = "1.35"
   vpc_config {
@@ -269,7 +280,7 @@ data "aws_ami" "ubuntu" {
   most_recent = true
   filter{ 
     name = "name"
-    values = [ "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+     values = [ "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }  
   filter{
     name = "virtualization-type"
@@ -279,7 +290,7 @@ data "aws_ami" "ubuntu" {
 }
 
 #instance creation
-
+  `
 resource "aws_instance" "ubuntu2"{
   ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
@@ -307,7 +318,7 @@ resource "aws_security_group" "Entire_pvt_arch_security_group"{
   dynamic "ingress"{
   for_each = var.ingress_pvt_ports
   content{
-     from_port = ingress.value
+     from_port = ingress.value                                                           q
      to_port = ingress.value
      protocol = "tcp"
      cidr_blocks = ["${aws_instance.ubuntu1.private_ip}/32"]

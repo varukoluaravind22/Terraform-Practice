@@ -38,10 +38,7 @@ variable "private_availability_zone_2"{
   type = string
   description = "Enter the availability zone for private subnet 2"
 }
-variable "public_vpc_cidr_2" {
-  type = string
-  description = "enter the public subnet 2 range"
-}
+
 variable "map_on_public_ip" {
   type = bool
   description = "Enter the bool value true or false"
