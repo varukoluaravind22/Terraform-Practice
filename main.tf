@@ -272,11 +272,30 @@ resource "aws_iam_role" "Entire_arch_node_role"{
       {
         Effect = "Allow"
 
-        Principal = {
-          Service = "ec2.amazonaws.com"
-        }
+        Action = [
+          "eks:ListFargateProfiles",
+          "eks:DescribeNodegroup",
+          "eks:ListNodegroups",
+          "eks:ListUpdates",
+          "eks:AccessKubernetesApi",
+          "eks:ListAddons",
+          "eks:DescribeCluster",
+          "eks:DescribeAddonVersions",
+          "eks:ListClusters",
+          "eks:ListIdentityProviderConfigs",
+          "iam:ListRoles"
+        ]
 
-        Action = "sts:AssumeRole"
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
+          "ssm:GetParameter"
+        ]
+
+        Resource = "arn:aws:ssm:*:217152986221:parameter/*"
       }
     ]
   })
