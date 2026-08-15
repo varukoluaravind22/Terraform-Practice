@@ -9,7 +9,7 @@ resource "aws_dynamodb_table" "terraform-lock" {
 }
 terraform {
     backend "s3" {
-      bucket = "my_entire_arch_state_bucket"
+      bucket = "appchunk"
       key = "Entire_arch/terraform.tfstate"
       region = "ap-south-1"
       encrypt = true
