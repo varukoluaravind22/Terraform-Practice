@@ -197,7 +197,7 @@ resource "aws_eks_cluster" "Entire_arch_eks_cluster"{
 #creating access entry to the terraform_user 
 #the user is having the admin access but he doesnt have access to the eks objects so for the same user to create the access we have to provie the access entry and associoate the poilcy AmazonEksAminPolicy
 resource "aws_eks_access_entry" "terraform_user"{
-  cluster_name = aws_eks_cluster.Entire_arch_eks-cluster.name
+  cluster_name = aws_eks_cluster.Entire_arch_eks_cluster.name
   principal_arn = "arn:aws:iam::217152986221:user/Terraform_user"
   type = "STANDARD"
 }
