@@ -67,14 +67,7 @@ variable "device_name" {
   type = string
   description = "Enter the device name for the block device"
 }
-variable "device_type" {
-  type = string
-  description = "Enter the device type for the block device"
-}
-variable "device_type" {
-  type = string
-  description = "Enter the device type for the block device"
-}
+
 variable "volume_size" {
   type = number
   description = "Enter the volume size for the block device"
