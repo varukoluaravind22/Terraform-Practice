@@ -330,6 +330,7 @@ resource "aws_instance" "ubuntu1" {
   instance_type = var.instance_type
   subnet_id = aws_subnet.Entire_pub_subnet-1.id
   security_groups = [aws_security_group.Entire_pub_arch_security_group.id]
+  key_name = var.instance_key_name
   tags ={
     Name = "${var.vpc_name}_Bastion_pub_instance"
   }

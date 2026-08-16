@@ -7,6 +7,7 @@ public_availability_zone_2 = "ap-south-1b"
 private_availability_zone_1 = "ap-south-1a"
 private_availability_zone_2 = "ap-south-1b"
 map_on_public_ip = true
+instance_key_name= devops
 private_vpc_cidr_1 = "10.0.3.0/24"
 private_vpc_cidr_2 = "10.0.4.0/24"
 internet_gateway_ip = "0.0.0.0/0"

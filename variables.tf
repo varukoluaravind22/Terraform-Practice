@@ -55,7 +55,10 @@ variable "internet_gateway_ip" {
   type = string
   description = "Enter the ip for the gateway"
 }
-
+variable "instance_key_name"{
+  type = string
+  description = "Existing AWS EC2 Key Pair name"
+}
 variable "instance_type" {
   type = string
   description = "Enter the instance type"
