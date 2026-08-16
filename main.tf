@@ -320,6 +320,11 @@ resource "aws_instance" "ubuntu2"{
   instance_type = var.instance_type
   subnet_id = aws_subnet.Entire_pvt_subnet-1.id
   key_name = var.instance_key_name
+  root_block_device {
+    device_name = var.device_name
+    volume_size = var.volume_size
+    volume_type = var.volume_type
+  }
   security_groups = [aws_security_group.Entire_pvt_arch_security_group.id]
   tags = {
     Name = "${var.vpc_name}_Cluster_pvt_instance"
@@ -330,6 +335,11 @@ resource "aws_instance" "ubuntu1" {
   ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   subnet_id = aws_subnet.Entire_pub_subnet-1.id
+  root_block_device{
+    device_name = var.device_name
+    volume_size = var.volume_size
+    volume_type = var.volume_type
+  }
   security_groups = [aws_security_group.Entire_pub_arch_security_group.id]
   key_name = var.instance_key_name
   tags ={

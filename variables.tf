@@ -63,6 +63,26 @@ variable "instance_type" {
   type = string
   description = "Enter the instance type"
 }
+variable "device_name" {
+  type = string
+  description = "Enter the device name for the block device"
+}
+variable "device_type" {
+  type = string
+  description = "Enter the device type for the block device"
+}
+variable "device_type" {
+  type = string
+  description = "Enter the device type for the block device"
+}
+variable "volume_size" {
+  type = number
+  description = "Enter the volume size for the block device"
+}
+variable "volume_type" {
+  type = string
+  description = "Enter the volume type for the block device"
+}
 variable "ingress_pub_ports" {
   type = list(number)
   description = "Enter the list of ports for security group"
