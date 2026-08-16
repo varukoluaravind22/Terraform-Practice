@@ -319,6 +319,7 @@ resource "aws_instance" "ubuntu2"{
   ami = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   subnet_id = aws_subnet.Entire_pvt_subnet-1.id
+  key_name = var.instance_key_name
   security_groups = [aws_security_group.Entire_pvt_arch_security_group.id]
   tags = {
     Name = "${var.vpc_name}_Cluster_pvt_instance"
