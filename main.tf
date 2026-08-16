@@ -128,23 +128,26 @@ resource "aws_route_table_association" "EntireArch_pvt_rt_association"{
 
 resource "aws_network_acl" "Entire_arch_nacl" {
   vpc_id = aws_vpc.Entire_arch.id
+
   ingress {
-    protocol = "tcp"
-    rule_no = "100"
-    action = "allow"
+    rule_no    = 100
+    protocol   = "-1"
+    action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port = "0"
-    to_port = "0"
+    from_port  = 0
+    to_port    = 0
   }
+
   egress {
-    protocol = "tcp"
-    rule_no = "100"
-    action = "allow"
+    rule_no    = 100
+    protocol   = "-1"
+    action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port = "0"
-    to_port = "0"
+    from_port  = 0
+    to_port    = 0
   }
-  tags ={
+
+  tags = {
     Name = "${var.vpc_name}_nacl"
   }
 }
