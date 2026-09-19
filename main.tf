@@ -321,7 +321,6 @@ resource "aws_instance" "ubuntu2"{
   subnet_id = aws_subnet.Entire_pvt_subnet-1.id
   key_name = var.instance_key_name
   root_block_device {
-    device_name = var.device_name
     volume_size = var.volume_size
     volume_type = var.volume_type
   }
