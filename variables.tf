@@ -63,10 +63,7 @@ variable "instance_type" {
   type = string
   description = "Enter the instance type"
 }
-variable "device_name" {
-  type = string
-  description = "Enter the device name for the block device"
-}
+
 
 variable "volume_size" {
   type = number
