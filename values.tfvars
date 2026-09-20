@@ -14,5 +14,6 @@ private_vpc_cidr_1 = "10.0.3.0/24"
 private_vpc_cidr_2 = "10.0.4.0/24"
 internet_gateway_ip = "0.0.0.0/0"
 instance_type = "t2.medium"
+instance_pub_type = "t2.micro"
 ingress_pub_ports = [22,80,443,8080,3100]
 ingress_pvt_ports = [22,3100]

@@ -332,7 +332,7 @@ resource "aws_instance" "ubuntu2"{
 
 resource "aws_instance" "ubuntu1" {
   ami = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+  instance_type = var.instance_pub_type
   subnet_id = aws_subnet.Entire_pub_subnet-1.id
   root_block_device{
     volume_size = var.volume_size

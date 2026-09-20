@@ -63,7 +63,10 @@ variable "instance_type" {
   type = string
   description = "Enter the instance type"
 }
-
+variable "instance_pub_type"{
+  type = string
+  description = "Enter the instance type for public subnet"
+}
 
 variable "volume_size" {
   type = number
